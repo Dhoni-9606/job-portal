@@ -92,12 +92,13 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'backend.urls'
 CORS_ALLOWED_ORIGINS = env_list(
     "CORS_ALLOWED_ORIGINS",
-    "http://localhost:3000",
+    # "http://localhost:3000",
+    " http://localhost:5173",
 )
 CORS_ALLOW_ALL_ORIGINS = env_bool("CORS_ALLOW_ALL_ORIGINS", default=DEBUG)
 CSRF_TRUSTED_ORIGINS = env_list(
     "CSRF_TRUSTED_ORIGINS",
-    "https://*.railway.app,https://*.up.railway.app",
+    # "https://*.railway.app,https://*.up.railway.app",
 )
 
 TEMPLATES = [

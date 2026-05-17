@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -26,13 +25,6 @@ class ForgotPasswordView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({'message': 'OTP sent to your email.'}, status=200)
-
-    # def post(self, request):
-    #     serializer = self.get_serializer(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
-    #     otp = serializer.save()  # returns OTP (for demo only)
-    #     # In production: do not return OTP, just send email.
-    #     return Response({"message": "OTP sent to email.", "otp": otp}, status=status.HTTP_200_OK)
 
 class ResetPasswordView(generics.GenericAPIView):
     permission_classes = [AllowAny]

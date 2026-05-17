@@ -63,13 +63,13 @@ class LoginSerializer(serializers.Serializer):
         return {
             'refresh': str(refresh),
             'access': str(refresh.access_token),
-            'user': {
-                'id': user.id,
-                'email': user.email,
-                'first_name': user.first_name,
-                'last_name': user.last_name,
-                'role': user.role,
-            }
+            # 'user': {
+            #     'id': user.id,
+            #     'email': user.email,
+            #     'first_name': user.first_name,
+            #     'last_name': user.last_name,
+            #     'role': user.role,
+            # }
         }
 User = get_user_model()
 def send_email_async(subject, message, recipient_list):
@@ -99,33 +99,6 @@ class ForgotPasswordSerializer(serializers.Serializer):
         )
         return otp   # still return for potential dev use, but not to frontend
 
-
-# class ForgotPasswordSerializer(serializers.Serializer):
-#     email = serializers.EmailField()
-
-#     def validate_email(self, value):
-#         if not User.objects.filter(email=value).exists():
-#             raise serializers.ValidationError("No user with this email address.")
-#         return value
-#     def save(self):
-#         email = self.validated_data['email']
-#         user = User.objects.get(email=email)
-        
-#         otp = ''.join(random.choices('0123456789', k=6))
-        
-#         # For now (demo)
-#         print(f"🔐 OTP for {email} is: {otp}")
-        
-#         # Send actual email
-#         send_mail(
-#             subject="Your Password Reset OTP",
-#             message=f"Your OTP is: {otp}\nIt will expire in 10 minutes.",
-#             from_email=settings.DEFAULT_FROM_EMAIL,
-#             recipient_list=[email],
-#             fail_silently=False,
-#         )
-#         return {"message": "OTP sent successfully", "otp": otp}  # Return in response
-  
 class ResetPasswordSerializer(serializers.Serializer):
     email = serializers.EmailField()
     otp = serializers.CharField(max_length=6, required=True)
