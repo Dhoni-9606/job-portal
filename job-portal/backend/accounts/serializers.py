@@ -63,13 +63,13 @@ class LoginSerializer(serializers.Serializer):
         return {
             'refresh': str(refresh),
             'access': str(refresh.access_token),
-            # 'user': {
-            #     'id': user.id,
-            #     'email': user.email,
-            #     'first_name': user.first_name,
-            #     'last_name': user.last_name,
-            #     'role': user.role,
-            # }
+            'user': {
+                'id': user.id,
+                'email': user.email,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'role': user.role,
+            }
         }
 User = get_user_model()
 def send_email_async(subject, message, recipient_list):
