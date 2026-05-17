@@ -6,4 +6,5 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('forgot-password/', ForgotPasswordView.as_view(), name='forgot-password'),
     path('reset-password/', ResetPasswordView.as_view(), name='reset-password'),
+    path('me/', LoginView.as_view(), name='me'),  # Endpoint to get current user info
 ]
